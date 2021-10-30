@@ -10,7 +10,14 @@
     <link rel="stylesheet" href="lib/css/shards.min.css">
 </head>
 <body>
-    <span class="fs-6 btn btn-primary position-fixed bottom-0 end-0 m-4" style="z-index: 10;">верх</span>
+    <div class="position-fixed bottom-0 end-0 m-4" style="z-index: 10;">
+        <span class="toTop btn btn-primary p-0">
+            <svg class="m-3" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+    width="25" height="25"
+    viewBox="0 0 172 172"
+    style=" fill:#000000;"><g transform="translate(4.988,4.988) scale(0.942,0.942)"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="butt" stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g fill="#ffffff" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"><path d="M122.11328,58.11719l-7.72656,7.55859l-23.01172,-23.01172v107.83594h-10.75v-107.83594l-23.01172,23.01172l-7.72656,-7.55859l36.11328,-36.11328z"></path></g><path d="M0,172v-172h172v172z" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><g fill="#ffffff" stroke="none" stroke-width="1" stroke-linejoin="miter"><path d="M86,22.00391l-36.11328,36.11328l7.72656,7.55859l23.01172,-23.01172v107.83594h10.75v-107.83594l23.01172,23.01172l7.72656,-7.55859z"></path></g><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path><path d="" fill="none" stroke="none" stroke-width="1" stroke-linejoin="miter"></path></g></g></svg>
+        </span>
+    </div>
 
     <header>
         <div class="up-line container py-2">
@@ -29,7 +36,7 @@
                     контакти
                 </div>
                 <div class="navbar-collapse collapse" id="header-nav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav" style="font-size: 1.1rem;">
                         <li class="nav-item active"><a href="" class="nav-link">Головна</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Портфоліо</a></li>
                         <li class="nav-item dropdown">
@@ -66,7 +73,7 @@
                 </style>
                 <div id="ps" class="shadow-lg me-auto p-5 pb-5 bg-white" style="border-radius: 20px; width: 70%; min-width: 700px">
                     <h1 class="text-primary h2">Поставимо вашу рекламу <br> у найкоротший час</h1>
-                    <div class="d-flex my-4 flex-sm-row flex-column-reverse">
+                    <div class="d-flex mе-4 flex-sm-row flex-column-reverse">
                         <div class="text-nowrap btn btn-outline-primary fs-5 px-5 d-flex align-items-center mt-sm-0 mt-4">
                             до послуг
                         </div>
@@ -84,9 +91,7 @@
                     <div class="col-md text-center">
                         <img class="mb-3" width="50" src="https://img.icons8.com/ios/50/000000/what.png"/>
                         <h3>Що ми робимо</h3>
-                        <p>Ми виконуємо кожен етап який 
-                            хоче клієнт, а саме: макет, друк 
-                            та розміщення</p>
+                        <p>Визначаємо мету рекламної кампанії, УТП: заповнюємо бриф на виготовлення макету, роликів тощо</p>
                     </div>
                     <div class="col-sm text-center">
                         <img class="mb-3" width="50" src="https://img.icons8.com/pastel-glyph/64/000000/receive-cash--v5.png"/>
@@ -213,5 +218,24 @@
     </main>
 
     <script src="lib/bootstrap-5/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        // $("a[href!=#]").each(function(){
+        //     var newTop = $($(this).attr("href")).offset().top;
+        //     $(window).scrollTop(newTop);
+        // });
+        $(window).scroll(function() {
+            if($(window).scrollTop() > $(window).height()/2) {
+                $(".toTop").show(200);
+            }
+            else {
+                $(".toTop").hide(200);
+            }
+        });
+        $(".toTop").hide();
+        $(".toTop").click(function(){
+            $(window).scrollTop(0);
+        });
+    </script>
 </body>
 </html>
