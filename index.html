@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="ua">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Фіра головна</title>
+    <meta name="description" content="рекламна агенція Фіра надає послуги: зовнішньої реклами, реклами в транспорті, відео та аудіо реклами, поліграфії та створення макету">
 
     <link rel="stylesheet" href="lib/bootstrap-5/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/css/shards.min.css">
 </head>
-<body>
+<body class="preload">
     <div class="position-fixed bottom-0 end-0 m-4" style="z-index: 10;">
-        <span class="toTop btn btn-primary p-0">
+        <span class="m-fadeOut btn-up btn btn-primary p-0">
             <svg class="m-3" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
     width="25" height="25"
     viewBox="0 0 172 172"
@@ -58,7 +59,8 @@
     </header>
 
     <main>
-        <section class="py-5" style="background-image: url(image/bg.jpg); background-position: top right; background-size: cover;">
+        <section class="position-relative">
+            <div class="position-absolute w-100 h-100 pt-5" style="background-image: url(image/bg.jpg); background-position: top right; background-size: cover; filter: brightness(60%);"></div>
             <div class="container position-relative">
                 <style>
                     @media (max-width: 750px) {
@@ -71,14 +73,16 @@
                         }
                     }
                 </style>
-                <div id="ps" class="shadow-lg me-auto p-5 pb-5 bg-white" style="border-radius: 20px; width: 70%; min-width: 700px">
-                    <h1 class="text-primary h2">Замовляйте та запустіть рекламу вже сьогодні</h1>
-                    <div class="d-flex mе-4 flex-sm-row flex-column-reverse">
-                        <div class="text-nowrap btn btn-outline-primary fs-5 px-5 d-flex align-items-center mt-sm-0 mt-4">
-                            До послуг
-                        </div>
-                        <div class="text-muted ms-sm-4 fs-5 mb-sm-0 mb-3 text-wrap">
-                            рекламна агенція Фіра швидко проведе вас від нуля до реклами, яка принесе вам клієнтів
+                <div class="py-5">
+                    <div id="ps" class="shadow-lg me-auto p-5 pb-5 bg-white" style="border-radius: 20px; width: 70%; min-width: 700px">
+                        <h1 class="text-primary h2">Замовляйте та запустіть рекламу вже сьогодні</h1>
+                        <div class="d-flex mе-4 flex-sm-row flex-column-reverse">
+                            <div class="text-nowrap btn btn-outline-primary fs-5 px-5 d-flex align-items-center mt-sm-0 mt-4">
+                                До послуг
+                            </div>
+                            <div class="text-muted ms-sm-4 fs-5 mb-sm-0 mb-3 text-wrap">
+                                рекламна агенція Фіра швидко проведе вас від нуля до реклами, яка принесе вам клієнтів
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -220,22 +224,48 @@
     <script src="lib/bootstrap-5/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
-        // $("a[href!=#]").each(function(){
-        //     var newTop = $($(this).attr("href")).offset().top;
-        //     $(window).scrollTop(newTop);
-        // });
+        window.onload = function() {
+            $("body").removeClass("preload");
+        }
         $(window).scroll(function() {
             if($(window).scrollTop() > $(window).height()/2) {
-                $(".toTop").show(200);
+                $(".btn-up").addClass("m-fadeIn"); 
             }
             else {
-                $(".toTop").hide(200);
+                $(".btn-up").removeClass("m-fadeIn");
             }
         });
-        $(".toTop").hide();
-        $(".toTop").click(function(){
+        $(".btn-up").click(function(){
             $(window).scrollTop(0);
         });
+
+        $('.dropdown').on('show.bs.dropdown', function(e){
+            $(this).find('.dropdown-menu').first().stop(true, true).show(150);
+            if($(window).width() <= 750)
+                $(this).parent().css({paddingBottom: 20})
+        });
+
+        // ADD SLIDEUP ANIMATION TO DROPDOWN-MENU 
+        $('.dropdown').on('hide.bs.dropdown', function(e){
+            $(this).find('.dropdown-menu').first().stop(true, true).hide(150);
+            if($(window).width() <= 750)
+                $(this).parent().css({paddingBottom: 0})
+        });
     </script>
+    <style>
+        .preload * {
+            transition: none !important;
+        }
+        .btn-up, .m-fadeOut {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s linear 300ms, opacity 300ms;
+        }
+        .m-fadeIn {
+            visibility: visible;
+            opacity: 1;
+            transition: visibility 0s linear 0s, opacity 300ms;
+        }
+    </style>
 </body>
 </html>
